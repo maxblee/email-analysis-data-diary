@@ -35,8 +35,15 @@ ipython kernel install --user --name=email-analysis
 
 And finally, you need to install some dependencies for `nltk` —
 specifically, "averaged_perceptron_tagger," which finds the parts
-of speech for various words, and "wordnet," which lemmatizes words
-(or reduces them to their root form).
+of speech for various words, "wordnet," which lemmatizes words
+(or reduces them to their root form), and "punkt," which tokenizes sentences.
+You can download those by typing this in Python:
+
+```python
+import nltk
+for nltk_depend in ["averaged_perceptron_tagger", "punkt", "wordnet"]:
+    nltk.download(nltk_depend)
+```
 
 I conducted my analysis after receiving two MBox exports from a reporter, Sandra Fish, at
 the Colorado News Collaborative. Combined, they contained several hundred emails.
