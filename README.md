@@ -150,7 +150,7 @@ Then, I set the date ranges so that all of the emails were from the same time pe
 
 ```python
 comparison_start = combined_candidates.groupby("candidate").date.min().max()
-combined_candidates = combined_candidates[combined_candidates.data >= comparison_start]
+combined_candidates = combined_candidates[combined_candidates.date >= comparison_start]
 ```
 
 The last cleaning I did involved removing boilerplate language from the email text. 
@@ -158,7 +158,7 @@ The last cleaning I did involved removing boilerplate language from the email te
 algorithm that's trying to find the words that make one set of documents unique from another.) 
 
 I used the `preprocess` function in `email_analysis/tokenize` to do this. The code likely looks a bit confusing, especially to people without any natural language processing background. But it essentially converts
-each document into a list of words, doing a little bit to consolidate words into their root forms (e.g. "dogs" to "dog") and to convert things like numbers and addresses into single tokens that computers can parse. Then, it creates a counter of all of the 10-word-long phrases in each candidates' emails. And finally, it removes phrases that appeared in more than a certain percentage of the documents.
+each document into a list of words, doing a little bit to consolidate words into their root forms (e.g. "dogs" to "dog") and to convert things like numbers and addresses into single tags that computers can more easily make sense of. Then, it creates a counter of all of the 10-word-long phrases in each candidates' emails. And finally, it removes phrases that appeared in more than a certain percentage of the documents.
 
 I borrowed this idea from an *explicit plagiarism detection technique*, as is described in [this review of plagiarism detection techniques](https://arxiv.org/pdf/1801.06323.pdf). 
 
